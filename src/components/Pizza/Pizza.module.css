@@ -1,0 +1,19 @@
+.Pizza {
+	width: 80%;
+	margin: auto;
+	height: 250px;
+	text-align: bold;
+	font-size: 1.2rem;
+}
+
+
+
+/* mais lardo que 500px */
+@media (min-width: 500px){
+	.Pizza {
+		width: 450px;
+		height: 400px;
+	}
+}
+
+
