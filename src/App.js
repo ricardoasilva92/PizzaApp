@@ -1,14 +1,15 @@
-import React from 'react';
-import Layout from './components/Layout/Layout'
+import React from "react";
+import Layout from "./components/Layout/Layout";
+import Pizza from "./containers/PizzaBuilder/PizzaBuilder";
 
 function App() {
-  return (
-    <div>
+	return (
+		<div>
 			<Layout>
-				<p>CHILDREN PROPS</p>
+				<Pizza />
 			</Layout>
-    </div>
-  );
+		</div>
+	);
 }
 
 export default App;
