@@ -17,7 +17,7 @@ const pizza = (props) => {
 
 	return (
 		<div className={basePizza}> 
-			{pizzaIngredients.length==0 ? 
+			{pizzaIngredients.length===0 ? 
 				<p>Please insert ingredients</p>
 				: pizzaIngredients}
 		</div>
