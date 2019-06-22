@@ -7,28 +7,20 @@ class PizzaIngredient extends Component {
 		let ingredient = null;
 
 		switch (this.props.type) {
-			case "bread-bottom":
-				ingredient = <div className={styles.BreadBottom} />;
-				break;
-			case "bread-top":
-				ingredient = (
-					<div className={styles.BreadTop}>
-						<div className={styles.Seeds1} />
-						<div className={styles.Seeds2} />
-					</div>
-				);
-				break;
-			case "meat":
-				ingredient = <div className={styles.Meat} />;
+			case "sauce":
+				ingredient = <div className={styles.sauce} />;
 				break;
 			case "cheese":
-				ingredient = <div className={styles.Cheese} />;
+				ingredient = <div className={styles.cheese} />;
 				break;
-			case "bacon":
-				ingredient = <div className={styles.Bacon} />;
+			case "pepperoni":
+				ingredient = <div className={styles.pepperoni} />;
 				break;
-			case "salad":
-				ingredient = <div className={styles.Salad} />;
+			case "olive":
+				ingredient = <div className={styles.olive} />;
+				break;
+			case "mushroom":
+				ingredient = <div className={styles.mushroom} />;
 				break;
 			default:
 				ingredient = null;

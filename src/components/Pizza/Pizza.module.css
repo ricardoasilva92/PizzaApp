@@ -1,19 +1,26 @@
 .Pizza {
-	width: 80%;
-	margin: auto;
-	height: 250px;
-	text-align: bold;
-	font-size: 1.2rem;
+  position: relative;
+  margin: auto;
+  width: 416px;
+  height: 410px;  
+}
+.Pizza div {
+  background-size: contain;
+  position: absolute;
+  width: 416px;
+  height: 410px;
 }
 
-
+.Pizzacrust {
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/292099/pizza_crust.png');
+}
 
 /* mais lardo que 500px */
-@media (min-width: 500px){
+/* @media (min-width: 500px){
 	.Pizza {
 		width: 450px;
 		height: 400px;
 	}
-}
+} */
 
 
