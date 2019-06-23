@@ -22,12 +22,13 @@ class PizzaBuilder extends Component {
 			mushroom: false
 		},
 		totalPrice: 5,
-		isPurshasable: false
+		isPurshasable: false,
+		purshasing: false
 	};
 	render() {
 		return (
 			<div>
-				<Modal> <OrderSummary ingredients={this.state.ingredients}/></Modal>
+				<Modal show={this.state.purshasing}> <OrderSummary ingredients={this.state.ingredients}/></Modal>
 				<Pizza ingredients={this.state.ingredients} />
 				<BuildControls
 					isPurshasable={this.state.isPurshasable}
@@ -35,9 +36,14 @@ class PizzaBuilder extends Component {
 					ingredientAdded={this.addIngredientHandler}
 					ingredientRemoved={this.removeIngredientHandler}
 					ingredientsState={this.state.ingredients}
+					clickOrderNow={this.purshaseHandler}
 				/>
 			</div>
 		);
+	}
+
+	purshaseHandler = () => {
+		this.setState({purshasing:true})
 	}
 
 	updateIsPurshasableState = (ingredients) => {
