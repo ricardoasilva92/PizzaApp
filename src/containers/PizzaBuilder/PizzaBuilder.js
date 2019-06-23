@@ -19,13 +19,16 @@ class PizzaBuilder extends Component {
 			olive: false,
 			mushroom: false
 		},
-		totalPrice: 5
+		totalPrice: 5,
+		isPurshasable: false
 	};
 	render() {
 		return (
 			<div>
 				<Pizza ingredients={this.state.ingredients} />
 				<BuildControls
+					isPurshasable={this.state.isPurshasable}
+					totalPrice={this.state.totalPrice}
 					ingredientAdded={this.addIngredientHandler}
 					ingredientRemoved={this.removeIngredientHandler}
 					ingredientsState={this.state.ingredients}
@@ -34,8 +37,18 @@ class PizzaBuilder extends Component {
 		);
 	}
 
+	updateIsPurshasableState = (ingredients) => {
+		const sum = Object.keys(ingredients)
+			.map(ingredientKey => {
+				return ingredients[ingredientKey];
+			})
+			.reduce((sum, el) => {
+				return sum + el;
+			}, 0);
+		this.setState({ isPurshasable: sum > 0 });
+	};
+
 	addIngredientHandler = type => {
-		
 		const updatedIngredients = {
 			...this.state.ingredients
 		};
@@ -47,6 +60,7 @@ class PizzaBuilder extends Component {
 			ingredients: updatedIngredients,
 			totalPrice: updatedPrice
 		});
+		this.updateIsPurshasableState(updatedIngredients);
 	};
 
 	removeIngredientHandler = type => {
@@ -61,7 +75,9 @@ class PizzaBuilder extends Component {
 			ingredients: updatedIngredients,
 			totalPrice: updatedPrice
 		});
+		this.updateIsPurshasableState(updatedIngredients);
 	};
+	
 }
 
 export default PizzaBuilder;

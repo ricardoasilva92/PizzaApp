@@ -12,6 +12,7 @@ const controls = [
 
 const buildControls = props => (
 	<div className={styles.BuildControls}>
+		<div>Price: {props.totalPrice}</div>
 		{
 			controls.map(control => (
 			<BuildControl
@@ -22,6 +23,7 @@ const buildControls = props => (
 				isChosen={props.ingredientsState[control.type]}
 			/>
 		))}
+		<button disabled={!props.isPurshasable} className={styles.OrderButton}>Order now!</button>
 	</div>)
 ;
 
