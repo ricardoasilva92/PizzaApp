@@ -1,11 +1,19 @@
-import React from 'react';
-import styles from './BuildControl.module.css'
+import React from "react";
+import styles from "./BuildControl.module.css";
 
-const buildControl = (props) => (
+const buildControl = props => (
 	<div className={styles.BuildControl}>
 		<div>{props.label}</div>
-		<button onClick={props.addItem} className={styles.More}>Yes</button>
-		<button onClick={props.removeItem}className={styles.Less}>No</button>
+		<button onClick={props.addItem} className={styles.More}>
+			Yes
+		</button>
+		<button
+			onClick={props.removeItem}
+			disabled={!props.isChosen}
+			className={styles.Less}
+		>
+			No
+		</button>
 	</div>
 );
 

@@ -12,15 +12,17 @@ const controls = [
 
 const buildControls = props => (
 	<div className={styles.BuildControls}>
-		{controls.map(control => (
+		{
+			controls.map(control => (
 			<BuildControl
 				key={control.label}
 				label={control.label}
 				addItem={() => props.ingredientAdded(control.type)}
 				removeItem={() => props.ingredientRemoved(control.type)}
+				isChosen={props.ingredientsState[control.type]}
 			/>
 		))}
-	</div>
-);
+	</div>)
+;
 
 export default buildControls;
