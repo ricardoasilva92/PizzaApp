@@ -33,6 +33,7 @@ class PizzaBuilder extends Component {
 					clickedBackDrop={this.purshaseCancelOrder}
 				>
 					<OrderSummary
+						totalPrice={this.state.totalPrice}
 						ingredients={this.state.ingredients}
 						purshaseCancelled={this.purshaseCancelOrder}
 						purshaseContinued={this.purshaseContinueHandler}
