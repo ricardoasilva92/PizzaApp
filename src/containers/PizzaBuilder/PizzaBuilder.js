@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Pizza from "../../components/Pizza/Pizza";
 import BuildControls from "../../components/Pizza/BuildControls/BuildControls";
-import Modal from '../../components/UI/Modal/Modal'
-import OrderSummary from '../../components/Pizza/OrderSummary/OrderSummary'
+import Modal from "../../components/UI/Modal/Modal";
+import OrderSummary from "../../components/Pizza/OrderSummary/OrderSummary";
 
 const INGREDIENT_PRICES = {
 	sauce: 1,
@@ -28,7 +28,16 @@ class PizzaBuilder extends Component {
 	render() {
 		return (
 			<div>
-				<Modal show={this.state.purshasing} clickedBackDrop={this.purshaseCancelOrder}> <OrderSummary ingredients={this.state.ingredients}/></Modal>
+				<Modal
+					show={this.state.purshasing}
+					clickedBackDrop={this.purshaseCancelOrder}
+				>
+					<OrderSummary
+						ingredients={this.state.ingredients}
+						purshaseCancelled={this.purshaseCancelOrder}
+						purshaseContinued={this.purshaseContinueHandler}
+					/>
+				</Modal>
 				<Pizza ingredients={this.state.ingredients} />
 				<BuildControls
 					isPurshasable={this.state.isPurshasable}
@@ -42,15 +51,19 @@ class PizzaBuilder extends Component {
 		);
 	}
 
+	purshaseContinueHandler = () => {
+		alert("Pizza Time");
+	};
+
 	purshaseCancelOrder = () => {
-		this.setState({purshasing:false})
-	}
+		this.setState({ purshasing: false });
+	};
 
 	purshaseHandler = () => {
-		this.setState({purshasing:true})
-	}
+		this.setState({ purshasing: true });
+	};
 
-	updateIsPurshasableState = (ingredients) => {
+	updateIsPurshasableState = ingredients => {
 		const sum = Object.keys(ingredients)
 			.map(ingredientKey => {
 				return ingredients[ingredientKey];
@@ -90,7 +103,6 @@ class PizzaBuilder extends Component {
 		});
 		this.updateIsPurshasableState(updatedIngredients);
 	};
-	
 }
 
 export default PizzaBuilder;
