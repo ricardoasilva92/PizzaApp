@@ -1,7 +1,10 @@
 import React from "react";
 import styles from "./Modal.module.css";
+import BackDrop from '../BackDrop/BackDrop'
 
 const modal = props => (
+	<div>
+		<BackDrop show={props.show} clicked={props.clickedBackDrop}/>
 	<div
 		className={styles.Modal}
 		style={{
@@ -10,6 +13,7 @@ const modal = props => (
 		}}
 	>
 		{props.children}
+	</div>
 	</div>
 );
 

@@ -28,7 +28,7 @@ class PizzaBuilder extends Component {
 	render() {
 		return (
 			<div>
-				<Modal show={this.state.purshasing}> <OrderSummary ingredients={this.state.ingredients}/></Modal>
+				<Modal show={this.state.purshasing} clickedBackDrop={this.purshaseCancelOrder}> <OrderSummary ingredients={this.state.ingredients}/></Modal>
 				<Pizza ingredients={this.state.ingredients} />
 				<BuildControls
 					isPurshasable={this.state.isPurshasable}
@@ -40,6 +40,10 @@ class PizzaBuilder extends Component {
 				/>
 			</div>
 		);
+	}
+
+	purshaseCancelOrder = () => {
+		this.setState({purshasing:false})
 	}
 
 	purshaseHandler = () => {
