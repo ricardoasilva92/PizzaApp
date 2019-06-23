@@ -25,27 +25,44 @@ class PizzaBuilder extends Component {
 		return (
 			<div>
 				<Pizza ingredients={this.state.ingredients} />
-				<BuildControls 
-					ingredientAdded={this.addIngredientHandler}/>
+				<BuildControls ingredientAdded={this.addIngredientHandler} ingredientRemoved={this.removeIngredientHandler}/>
 			</div>
 		);
 	}
 
 	addIngredientHandler = type => {
-		console.log("add ingredient")
 		const updatedIngredients = {
 			...this.state.ingredients
 		};
 		updatedIngredients[type] = true;
 
-		const newPrice = this.state.totalPrice + INGREDIENT_PRICES[type]
+		//only update price if it was false
+		const updatedPrice = this.state.ingredients[type]
+			? this.state.totalPrice
+			: this.state.totalPrice + INGREDIENT_PRICES[type];
 
 		this.setState({
 			ingredients: updatedIngredients,
-			totalPrice: newPrice
-		})
+			totalPrice: updatedPrice
+		});
+	};
 
-		console.log(this.state)
+	removeIngredientHandler = type => {
+		const updatedIngredients = {
+			...this.state.ingredients
+		};
+		updatedIngredients[type] = false;
+
+		//only update price if it is true
+		const updatedPrice =
+			this.state.ingredients[type] == false
+				? this.state.totalPrice
+				: this.state.totalPrice - INGREDIENT_PRICES[type];
+
+		this.setState({
+			ingredients: updatedIngredients,
+			totalPrice: updatedPrice
+		});
 	};
 }
 
