@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Pizza from "../../components/Pizza/Pizza";
 import BuildControls from "../../components/Pizza/BuildControls/BuildControls";
+import Modal from '../../components/UI/Modal/Modal'
+import OrderSummary from '../../components/Pizza/OrderSummary/OrderSummary'
 
 const INGREDIENT_PRICES = {
 	sauce: 1,
@@ -25,6 +27,7 @@ class PizzaBuilder extends Component {
 	render() {
 		return (
 			<div>
+				<Modal> <OrderSummary ingredients={this.state.ingredients}/></Modal>
 				<Pizza ingredients={this.state.ingredients} />
 				<BuildControls
 					isPurshasable={this.state.isPurshasable}
