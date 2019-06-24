@@ -3,7 +3,8 @@ import Pizza from "../../components/Pizza/Pizza";
 import BuildControls from "../../components/Pizza/BuildControls/BuildControls";
 import Modal from "../../components/UI/Modal/Modal";
 import OrderSummary from "../../components/Pizza/OrderSummary/OrderSummary";
-import axios from '../../axios-orders';
+import axios from "../../axios-orders";
+import Spinner from "../../components/UI/Spinner/Spinner";
 
 const INGREDIENT_PRICES = {
 	sauce: 1,
@@ -24,21 +25,28 @@ class PizzaBuilder extends Component {
 		},
 		totalPrice: 5,
 		isPurshasable: false,
-		purshasing: false
+		purshasing: false,
+		loading: false
 	};
 	render() {
+		let orderSummary = (
+			<OrderSummary
+				totalPrice={this.state.totalPrice}
+				ingredients={this.state.ingredients}
+				purshaseCancelled={this.purshaseCancelOrder}
+				purshaseContinued={this.purshaseContinueHandler}
+			/>
+		);
+		if (this.state.loading) {
+			orderSummary = <Spinner />;
+		}
 		return (
 			<div>
 				<Modal
 					show={this.state.purshasing}
 					clickedBackDrop={this.purshaseCancelOrder}
 				>
-					<OrderSummary
-						totalPrice={this.state.totalPrice}
-						ingredients={this.state.ingredients}
-						purshaseCancelled={this.purshaseCancelOrder}
-						purshaseContinued={this.purshaseContinueHandler}
-					/>
+					{orderSummary}
 				</Modal>
 				<Pizza ingredients={this.state.ingredients} />
 				<BuildControls
@@ -55,22 +63,28 @@ class PizzaBuilder extends Component {
 
 	purshaseContinueHandler = () => {
 		//needs to have.json because of firebase
-		const order ={
+		this.setState({ loading: true });
+		const order = {
 			ingredients: this.state.ingredients,
 			price: this.state.totalPrice, //price should be calculated in server
 			customer: {
-				name: 'Ricardo',
+				name: "Ricardo",
 				address: {
-					street: 'testStreet',
-					zipCode: '41351',
-					country: 'Portugal'
+					street: "testStreet",
+					zipCode: "41351",
+					country: "Portugal"
 				},
-				email:'ric@MediaList.com'
+				email: "ric@MediaList.com"
 			}
-		}
-		axios.post('/orders.json',order)
-			.then(response => console.log(response))
-			.catch(error => console.log(error));
+		};
+		axios
+			.post("/orders.json", order)
+			.then(response => {
+				this.setState({loading:false, purshasing:false});
+			})
+			.catch(error => {
+				this.setState({loading:false, purshasing:false})
+			});
 	};
 
 	purshaseCancelOrder = () => {
