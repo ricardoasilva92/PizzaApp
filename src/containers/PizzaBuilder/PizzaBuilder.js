@@ -63,28 +63,29 @@ class PizzaBuilder extends Component {
 
 	purshaseContinueHandler = () => {
 		//needs to have.json because of firebase
-		this.setState({ loading: true });
-		const order = {
-			ingredients: this.state.ingredients,
-			price: this.state.totalPrice, //price should be calculated in server
-			customer: {
-				name: "Ricardo",
-				address: {
-					street: "testStreet",
-					zipCode: "41351",
-					country: "Portugal"
-				},
-				email: "ric@MediaList.com"
-			}
-		};
-		axios
-			.post("/orders.json", order)
-			.then(response => {
-				this.setState({loading:false, purshasing:false});
-			})
-			.catch(error => {
-				this.setState({loading:false, purshasing:false})
-			});
+		// this.setState({ loading: true });
+		// const order = {
+		// 	ingredients: this.state.ingredients,
+		// 	price: this.state.totalPrice, //price should be calculated in server
+		// 	customer: {
+		// 		name: "Ricardo",
+		// 		address: {
+		// 			street: "testStreet",
+		// 			zipCode: "41351",
+		// 			country: "Portugal"
+		// 		},
+		// 		email: "ric@MediaList.com"
+		// 	}
+		// };
+		// axios
+		// 	.post("/orders.json", order)
+		// 	.then(response => {
+		// 		this.setState({loading:false, purshasing:false});
+		// 	})
+		// 	.catch(error => {
+		// 		this.setState({loading:false, purshasing:false})
+		// 	});
+		this.props.history.push('/checkout');
 	};
 
 	purshaseCancelOrder = () => {
