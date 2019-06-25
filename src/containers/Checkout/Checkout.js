@@ -11,10 +11,21 @@ class Checkout extends Component {
 			mushroom: false
 		}
 	}
+
+	checkoutCancelledHandler = () => {
+		this.props.history.goBack();
+	}
+
+	checkoutConfirmedHandler = () => {
+		this.props.history.replace('/checkout/contact-data');
+	}
+
 	render() {
 		return (
 			<div>
-				<CheckoutSummary ingredients={this.state.ingredients}/>
+				<CheckoutSummary ingredients={this.state.ingredients}
+				checkoutCancelled={this.checkoutCancelledHandler}
+				checkoutConfirmed={this.checkoutConfirmedHandler}/>
 			</div>
 		);
 	}
