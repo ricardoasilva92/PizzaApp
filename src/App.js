@@ -1,14 +1,18 @@
 import React from "react";
+import { Route, Switch } from "react-router-dom";
+
 import Layout from "./components/Layout/Layout";
-import Pizza from "./containers/PizzaBuilder/PizzaBuilder";
-import Checkout from './containers/Checkout/Checkout'
+import Checkout from "./containers/Checkout/Checkout";
+import PizzaBuilder from "./containers/PizzaBuilder/PizzaBuilder";
 
 function App() {
 	return (
 		<div>
 			<Layout>
-				<Pizza />
-				<Checkout/>
+				<Switch>
+					<Route path="/checkout" component={Checkout} />
+					<Route path="/" exact component={PizzaBuilder} />
+				</Switch>
 			</Layout>
 		</div>
 	);
