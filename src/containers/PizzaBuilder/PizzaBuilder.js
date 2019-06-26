@@ -3,7 +3,7 @@ import Pizza from "../../components/Pizza/Pizza";
 import BuildControls from "../../components/Pizza/BuildControls/BuildControls";
 import Modal from "../../components/UI/Modal/Modal";
 import OrderSummary from "../../components/Pizza/OrderSummary/OrderSummary";
-import axios from "../../axios-orders";
+
 import Spinner from "../../components/UI/Spinner/Spinner";
 
 const INGREDIENT_PRICES = {
@@ -62,29 +62,6 @@ class PizzaBuilder extends Component {
 	}
 
 	purshaseContinueHandler = () => {
-		//needs to have.json because of firebase
-		// this.setState({ loading: true });
-		// const order = {
-		// 	ingredients: this.state.ingredients,
-		// 	price: this.state.totalPrice, //price should be calculated in server
-		// 	customer: {
-		// 		name: "Ricardo",
-		// 		address: {
-		// 			street: "testStreet",
-		// 			zipCode: "41351",
-		// 			country: "Portugal"
-		// 		},
-		// 		email: "ric@MediaList.com"
-		// 	}
-		// };
-		// axios
-		// 	.post("/orders.json", order)
-		// 	.then(response => {
-		// 		this.setState({loading:false, purshasing:false});
-		// 	})
-		// 	.catch(error => {
-		// 		this.setState({loading:false, purshasing:false})
-		// 	});
 		const queryParams = [];
 		for (let i in this.state.ingredients) {
 			queryParams.push(
@@ -93,6 +70,8 @@ class PizzaBuilder extends Component {
 					encodeURIComponent(this.state.ingredients[i])
 			);
 		}
+
+		queryParams.push('price=' + this.state.totalPrice)
 		const queryString = queryParams.join("&");
 
 		this.props.history.push({
